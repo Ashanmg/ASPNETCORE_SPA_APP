@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace VEGA.Models
 {
@@ -7,7 +8,9 @@ namespace VEGA.Models
     {
         public int Id { get; set; }
 
-        public int Name { get; set; }
+        [Required]
+        [StringLength(255)]
+        public string Name { get; set; }
 
         public ICollection<Model> Models { get; set; }
 
