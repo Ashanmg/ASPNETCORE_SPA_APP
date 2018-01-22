@@ -20,7 +20,7 @@ namespace VEGA.Controllers
 
         }
 
-        [HttpGet("/api/features")]
+        [HttpGet("/api/vehicle/features")]
         public async Task<IEnumerable<FeatureResource>> GetFeatures()
         {
             var features = await context.Features.ToListAsync();
