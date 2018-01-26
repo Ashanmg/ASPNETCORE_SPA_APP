@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace VEGA.Models
@@ -16,6 +18,11 @@ namespace VEGA.Models
         [Required]
         [StringLength(255)]
         public string ContactPhone { get; set; }
+        public ICollection<VehicleFeature> Features { get; set; }
 
+        public Vehicle()
+        {
+            Features = new Collection<VehicleFeature>();
+        }
     }
 }
