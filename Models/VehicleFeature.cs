@@ -1,5 +1,8 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace VEGA.Models
 {
+    [Table("VehicleFeatures")]
     public class VehicleFeature
     {
         public int VehicleId { get; set; }
@@ -7,7 +10,7 @@ namespace VEGA.Models
         public int FeatureId { get; set; }
 
         public Vehicle Vehicle { get; set; }
-        
+
         public Feature Feature { get; set; }
     }
 }
