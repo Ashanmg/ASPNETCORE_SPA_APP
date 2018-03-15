@@ -1,6 +1,6 @@
 namespace VEGA.Controllers.Resources
 {
-    public class FeatureResource
+    public class KeyValueFairResource
     {
         public int Id { get; set; }
         public string Name { get; set; }

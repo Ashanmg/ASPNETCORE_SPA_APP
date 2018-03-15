@@ -4,17 +4,13 @@ using VEGA.Models;
 
 namespace VEGA.Controllers.Resources
 {
-    public class MakeResource
+    public class MakeResource : KeyValueFairResource
     {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-
-        public ICollection<ModelResource> Models { get; set; }
+        public ICollection<KeyValueFairResource> Models { get; set; }
 
         public MakeResource()
         { 
-            Models = new Collection<ModelResource>();
+            Models = new Collection<KeyValueFairResource>();
         }
     }
 }
