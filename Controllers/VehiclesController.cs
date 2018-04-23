@@ -29,6 +29,13 @@ namespace VEGA.Controllers
             context.Vehicles.Add(vehicle);
             await context.SaveChangesAsync();
 
+            vehicle = await context.Vehicles
+            .Include(v => v.Features)
+                .ThenInclude(vf => vf.Feature)
+            .Include(v => v.Model)
+                .ThenInclude(v => v.Make)
+            .SingleOrDefaultAsync(v => v.Id == vehicle.Id);
+
             var result = mapper.Map<Vehicle, VehicleResource>(vehicle);
             return Ok(result);
         }
@@ -39,7 +46,13 @@ namespace VEGA.Controllers
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var vehicle = await context.Vehicles.Include(v => v.Features).SingleOrDefaultAsync(v =>v.Id == id);
+            var vehicle = await context.Vehicles
+            .Include(v => v.Features)
+                .ThenInclude(vf => vf.Feature)
+            .Include(v => v.Model)
+                .ThenInclude(v => v.Make)
+            .SingleOrDefaultAsync(v => v.Id == id);
+
             if(vehicle == null)
                 return NotFound();
             
