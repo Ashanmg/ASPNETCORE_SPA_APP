@@ -33,6 +33,7 @@ namespace aspnetcore_spa
         {
             // dependency injection
             services.AddScoped<IVehicleRepository, VehicleRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddAutoMapper();
 
