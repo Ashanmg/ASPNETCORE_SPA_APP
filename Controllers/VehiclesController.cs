@@ -20,7 +20,7 @@ namespace VEGA.Controllers
             this.vehicleRepository = vehicleRepository;
             this.mapper = mapper;
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> CreateVehicle([FromBody]SaveVehicleResource vehicleResource)
         {
@@ -51,7 +51,8 @@ namespace VEGA.Controllers
             mapper.Map<SaveVehicleResource, Vehicle>(vehicleResource, vehicle);
 
             await unitOfWork.CompleteAsync();
-
+            vehicle = await vehicleRepository.GetVehicle(vehicle.Id);
+            
             var result = mapper.Map<Vehicle, VehicleResource>(vehicle);
             return Ok(result);
         }
