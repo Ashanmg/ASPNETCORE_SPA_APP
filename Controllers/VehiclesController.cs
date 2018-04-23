@@ -26,19 +26,12 @@ namespace VEGA.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-<<<<<<< HEAD
 
             var vehicle = mapper.Map<SaveVehicleResource, Vehicle>(vehicleResource);
             vehicleRepository.Add(vehicle);
             await unitOfWork.CompleteAsync();
 
             vehicle = await vehicleRepository.GetVehicle(vehicle.Id);
-=======
-                
-            var vehicle = mapper.Map<SaveVehicleResource, Vehicle>(vehicleResource);
-            context.Vehicles.Add(vehicle);
-            await context.SaveChangesAsync();
->>>>>>> 0b1eecf4c2d6af9b1184171f9e4a83071ed5af4b
 
             var result = mapper.Map<Vehicle, VehicleResource>(vehicle);
             return Ok(result);
@@ -54,11 +47,6 @@ namespace VEGA.Controllers
 
             if (vehicle == null)
                 return NotFound();
-<<<<<<< HEAD
-=======
-            
-            mapper.Map<SaveVehicleResource, Vehicle>(vehicleResource, vehicle);
->>>>>>> 0b1eecf4c2d6af9b1184171f9e4a83071ed5af4b
 
             mapper.Map<SaveVehicleResource, Vehicle>(vehicleResource, vehicle);
 
@@ -85,16 +73,7 @@ namespace VEGA.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetVehicle(int id)
         {
-<<<<<<< HEAD
             var vehicle = await vehicleRepository.GetVehicle(id);
-=======
-            var vehicle = await context.Vehicles
-            .Include(v => v.Features)
-                .ThenInclude(vf => vf.Feature)
-            .Include(v => v.Model)
-                .ThenInclude(v => v.Make)
-            .SingleOrDefaultAsync(v => v.Id == id);
->>>>>>> 0b1eecf4c2d6af9b1184171f9e4a83071ed5af4b
 
             if (vehicle == null)
                 return NotFound();
